@@ -12,7 +12,7 @@ pub struct Environment {
 
 impl Environment {
   pub fn from_file(file_path: &str) -> Self {
-    let Ok(file) = File::open(&file_path) else {
+    let Ok(file) = File::open(file_path) else {
       panic!("Failed to find environment file at {}; does it exist?", file_path);
     };
     let mut env = Self {
@@ -37,7 +37,7 @@ impl Environment {
         continue;
       };
       let split: Vec<&str> =
-        env_line.split("=").map(|chunk| chunk.trim()).collect();
+        env_line.split('=').map(|chunk| chunk.trim()).collect();
       if split.len() != 2 {
         continue;
       };
